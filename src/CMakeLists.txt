@@ -7,8 +7,6 @@ set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED TRUE)
 
 
-include_directories(src/)
-
 file(GLOB PRODUCTION_SOURCES "*.cpp")
 
 # add_library(Sudoku STATIC ${PRODUCTION_SOURCES})

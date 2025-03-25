@@ -4,7 +4,7 @@
 SCRIPT_DIR="$(dirname $(realpath $0) )"
 PROJECT_DIR="$SCRIPT_DIR/.."
 SOURCE_DIR="$PROJECT_DIR/src"
-BUILD_DIR="$PROJECT_DIR/build"
+BUILD_DIR="$PROJECT_DIR/build/production"
 
 GENERATOR="Unix Makefiles"
 
