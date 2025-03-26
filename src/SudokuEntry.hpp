@@ -1,5 +1,6 @@
 # pragma once
 
+#include "Definitions.hpp"
 #include <cstdint>
 #include <stdexcept>
 
@@ -9,11 +10,6 @@
 class SudokuEntry
 {
     public:
-        constexpr static std::uint_fast16_t VALUE_UNDETERMINED = 0;
-        constexpr static std::uint_fast16_t ALL_VALUES_POSSIBLE = 0b1111111110;
-        constexpr static std::uint_fast8_t MIN_VALUE = 1;
-        constexpr static std::uint_fast8_t MAX_VALUE = 9;
-
         SudokuEntry ( void );
         SudokuEntry ( std::uint_fast8_t value );
         bool is_determined ( void ) const;
@@ -23,8 +19,13 @@ class SudokuEntry
         void remove_possible_value ( std::uint_fast8_t value );
 
     private:
-    std::uint_fast16_t data = ALL_VALUES_POSSIBLE;
+        typedef std::uint_fast16_t PossibleValues;
+        // staticassert(MAX_VALUE < sizeof(PossibleValues) * 8 - 1, 
+        //     "Too many possible values for the data type");
+        static constexpr PossibleValues ALL_VALUES_POSSIBLE = 0b1111111110;
+        
+        PossibleValues data = ALL_VALUES_POSSIBLE;
 
-        inline std::uint_fast16_t bitmask( std::uint_fast8_t value ) const;
+        inline PossibleValues bitmask( std::uint_fast8_t value ) const;
         inline bool is_in_value_range ( std::uint_fast8_t value ) const;
 };

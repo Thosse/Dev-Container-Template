@@ -1,5 +1,5 @@
 #include "SudokuData.hpp"
-#include "SudokuEntry.hpp"
+#include "Definitions.hpp"
 
 #include <cstdint>
 #include <stdexcept>
@@ -11,14 +11,14 @@ SudokuData::SudokuData ( void )
     return;
 }
 
-SudokuData::SudokuData ( const ValueArray& values )
+SudokuData::SudokuData ( const Sudoku::ValueArray& values )
 {
-    for (std::uint_fast8_t row = 0; row < ROW_SIZE; ++row)
+    for (std::uint_fast8_t row = 0; row < Sudoku::ROW_SIZE; ++row)
     {
-        for (std::uint_fast8_t col = 0; col < COLUMN_SIZE; ++col)
+        for (std::uint_fast8_t col = 0; col < Sudoku::COLUMN_SIZE; ++col)
         {       
             std::uint_fast8_t value = values[row * 9 + col];
-            if (value != SudokuEntry::VALUE_UNDETERMINED)
+            if (value != Sudoku::VALUE_UNDETERMINED)
             {
                 set_value(row, col, value);
             }
@@ -66,5 +66,7 @@ void SudokuData::set_value (
 // //////////////// Private methods ////////////////
 bool SudokuData::is_in_index_range ( std::uint_fast8_t row, std::uint_fast8_t column ) const
 {
-    return row >= 0 && row < ROW_SIZE && column >= 0 && column < COLUMN_SIZE;
+    const bool row_in_range = ( 0 <= row &&  Sudoku::ROW_SIZE > row );
+    const bool column_in_range = ( 0 <= column &&  Sudoku::COLUMN_SIZE > column );
+    return row_in_range && column_in_range;
 }

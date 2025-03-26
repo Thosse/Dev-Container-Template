@@ -39,7 +39,9 @@ std::uint_fast8_t SudokuEntry::value ( void ) const
 {
     if (is_determined())
     {
-        for (std::uint_fast8_t i = MIN_VALUE; i <= MAX_VALUE; ++i)
+        for (std::uint_fast8_t i = Sudoku::MIN_VALUE; 
+            i <= Sudoku::MAX_VALUE; 
+            ++i)
         {
             if (data & bitmask(i))
             {
@@ -47,7 +49,7 @@ std::uint_fast8_t SudokuEntry::value ( void ) const
             }
         }
     }
-    return VALUE_UNDETERMINED;
+    return Sudoku::VALUE_UNDETERMINED;
 }
 
 
@@ -85,7 +87,7 @@ std::uint_fast16_t SudokuEntry::bitmask( std::uint_fast8_t value ) const
 
 inline bool SudokuEntry::is_in_value_range ( std::uint_fast8_t value ) const
 {
-    return MIN_VALUE <= value && value <= MAX_VALUE;
+    return Sudoku::MIN_VALUE <= value && value <= Sudoku::MAX_VALUE;
 }
 
 

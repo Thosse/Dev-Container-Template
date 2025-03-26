@@ -1,10 +1,9 @@
 # pragma once
 
 #include "SudokuEntry.hpp"
-
+#include "Definitions.hpp"
 #include <cstdint>
 #include <stdexcept>
-#include <array>
 
 
 /**
@@ -13,17 +12,9 @@
 class SudokuData
 {
     public:
-        static constexpr std::uint_fast8_t ROW_SIZE = 9;
-        static constexpr std::uint_fast8_t COLUMN_SIZE = 9;
-        static constexpr std::uint_fast8_t NUMBER_OF_ELEMENTS 
-            = ROW_SIZE * COLUMN_SIZE;
-
-        typedef std::array<std::uint_fast8_t, SudokuData::NUMBER_OF_ELEMENTS> 
-            ValueArray;
-
         SudokuData ( void );
         SudokuData ( 
-            const ValueArray& values 
+            const Sudoku::ValueArray& values 
         );
         std::uint_fast8_t value ( 
             std::uint_fast8_t row, 

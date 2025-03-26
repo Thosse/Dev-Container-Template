@@ -23,14 +23,14 @@ TEST(SudokuEntryTest, set_value) {
 TEST(SudokuEntryTest, set_too_high_value) {
     SudokuEntry element;
     EXPECT_THROW(
-        element.set_value(SudokuEntry::MAX_VALUE + 1), 
+        element.set_value(Sudoku::MAX_VALUE + 1), 
         std::out_of_range);
 }
 
 TEST(SudokuEntryTest, set_too_low_value) {
     SudokuEntry element;
     EXPECT_THROW(
-        element.set_value(SudokuEntry::MIN_VALUE - 1), 
+        element.set_value(Sudoku::MIN_VALUE - 1), 
         std::out_of_range);
 }
 
@@ -50,13 +50,13 @@ TEST(SudokuEntryTest, remove_possible_value) {
 TEST(SudokuEntryTest, remove_too_high_possible_value) {
     SudokuEntry element;
     EXPECT_THROW(
-        element.remove_possible_value(SudokuEntry::MAX_VALUE + 1), 
+        element.remove_possible_value(Sudoku::MAX_VALUE + 1), 
         std::out_of_range);
 }
 
 TEST(SudokuEntryTest, remove_too_low_possible_value) {
     SudokuEntry element;
     EXPECT_THROW(
-        element.remove_possible_value(SudokuEntry::MIN_VALUE - 1), 
+        element.remove_possible_value(Sudoku::MIN_VALUE - 1), 
         std::out_of_range);
 }
