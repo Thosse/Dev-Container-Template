@@ -1,18 +1,17 @@
-#include <span>
+#include "SudokuEntry.hpp"
+
 #include <cstdint>
-#include <list>
 #include <stdexcept>
-#include "SudokuElement.hpp"
 
 
 // //////////////// Constructors ////////////////
-SudokuElement::SudokuElement ( void )
+SudokuEntry::SudokuEntry ( void )
 {
     data = ALL_VALUES_POSSIBLE;
 }
 
 
-SudokuElement::SudokuElement ( std::uint_fast8_t value )
+SudokuEntry::SudokuEntry ( std::uint_fast8_t value )
 {
     set_value(value);
     return;
@@ -20,13 +19,13 @@ SudokuElement::SudokuElement ( std::uint_fast8_t value )
 
 
 // //////////////// Public methods ////////////////
-bool SudokuElement::is_determined ( void ) const
+bool SudokuEntry::is_determined ( void ) const
 {
     return __builtin_popcount(data) == 1;
 }
 
 
-bool SudokuElement::is_possible_value ( std::uint_fast8_t value ) const
+bool SudokuEntry::is_possible_value ( std::uint_fast8_t value ) const
 {
     if (not is_in_value_range(value))
     {
@@ -36,7 +35,7 @@ bool SudokuElement::is_possible_value ( std::uint_fast8_t value ) const
 }
 
 
-std::uint_fast8_t SudokuElement::value ( void ) const
+std::uint_fast8_t SudokuEntry::value ( void ) const
 {
     if (is_determined())
     {
@@ -52,7 +51,7 @@ std::uint_fast8_t SudokuElement::value ( void ) const
 }
 
 
-void SudokuElement::set_value ( std::uint_fast8_t value )
+void SudokuEntry::set_value ( std::uint_fast8_t value )
 {
     if (not is_possible_value(value))
     {
@@ -62,7 +61,7 @@ void SudokuElement::set_value ( std::uint_fast8_t value )
     return;
 }
 
-void SudokuElement::remove_possible_value ( std::uint_fast8_t value )
+void SudokuEntry::remove_possible_value ( std::uint_fast8_t value )
 {
     if (not is_in_value_range(value))
     {
@@ -74,7 +73,7 @@ void SudokuElement::remove_possible_value ( std::uint_fast8_t value )
 
 
 // //////////////// Private methods ////////////////
-std::uint_fast16_t SudokuElement::bitmask( std::uint_fast8_t value ) const
+std::uint_fast16_t SudokuEntry::bitmask( std::uint_fast8_t value ) const
 {
     if (not is_in_value_range(value))
     {
@@ -84,7 +83,7 @@ std::uint_fast16_t SudokuElement::bitmask( std::uint_fast8_t value ) const
 }
 
 
-inline bool SudokuElement::is_in_value_range ( std::uint_fast8_t value ) const
+inline bool SudokuEntry::is_in_value_range ( std::uint_fast8_t value ) const
 {
     return MIN_VALUE <= value && value <= MAX_VALUE;
 }

@@ -1,12 +1,12 @@
-#include <span>
+# pragma once
+
 #include <cstdint>
-#include <list>
 #include <stdexcept>
 
 /**
  * @brief A class representing a single element of a Sudoku puzzle.
  */
-class SudokuElement
+class SudokuEntry
 {
     public:
         constexpr static std::uint_fast16_t VALUE_UNDETERMINED = 0;
@@ -14,8 +14,8 @@ class SudokuElement
         constexpr static std::uint_fast8_t MIN_VALUE = 1;
         constexpr static std::uint_fast8_t MAX_VALUE = 9;
 
-        SudokuElement ( void );
-        SudokuElement ( std::uint_fast8_t value );
+        SudokuEntry ( void );
+        SudokuEntry ( std::uint_fast8_t value );
         bool is_determined ( void ) const;
         bool is_possible_value ( std::uint_fast8_t value ) const;
         std::uint_fast8_t value ( void ) const;
