@@ -20,6 +20,7 @@ class SudokuElement
         bool is_possible_value ( std::uint_fast8_t value ) const;
         std::uint_fast8_t value ( void ) const;
         void set_value ( std::uint_fast8_t value );
+        void remove_possible_value ( std::uint_fast8_t value );
 
     private:
     std::uint_fast16_t data = ALL_VALUES_POSSIBLE;

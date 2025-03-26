@@ -56,9 +56,19 @@ void SudokuElement::set_value ( std::uint_fast8_t value )
 {
     if (not is_possible_value(value))
     {
-        throw std::invalid_argument("Value not possible");
+        throw std::out_of_range("Value not possible");
     }
     data = bitmask(value);
+    return;
+}
+
+void SudokuElement::remove_possible_value ( std::uint_fast8_t value )
+{
+    if (not is_in_value_range(value))
+    {
+        throw std::out_of_range("Value out of range");
+    }
+    data &= ~bitmask(value);
     return;
 }
 
