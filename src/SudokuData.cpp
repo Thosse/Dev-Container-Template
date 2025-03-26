@@ -36,6 +36,18 @@ std::uint_fast8_t SudokuData::value (
     return entries[row][column].value();
 }
 
+bool SudokuData::is_determined ( 
+    std::uint_fast8_t row, 
+    std::uint_fast8_t column 
+) const
+{   
+    if ( not is_in_index_range(row, column) )
+    {
+        throw std::out_of_range("Value out of range");
+    }
+    return entries[row][column].is_determined();
+}
+
 bool SudokuData::is_possible_value ( 
     std::uint_fast8_t row, 
     std::uint_fast8_t column,

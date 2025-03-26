@@ -20,6 +20,10 @@ class SudokuData
             std::uint_fast8_t row, 
             std::uint_fast8_t column 
         ) const;
+        bool is_determined ( 
+            std::uint_fast8_t row, 
+            std::uint_fast8_t column 
+        ) const;
         bool is_possible_value ( 
             std::uint_fast8_t row, 
             std::uint_fast8_t column,

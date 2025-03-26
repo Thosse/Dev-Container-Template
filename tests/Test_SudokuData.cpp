@@ -82,6 +82,27 @@ TEST(SudokuDataTest, ParameterizedConstructor_column_almost_set) {
     }
 }
 
+// Test Method: is_determined
+TEST(SudokuDataTest, is_not_determined_on_empty_data) {
+    SudokuData data;
+    for (std::uint_fast8_t row = 0; row < Sudoku::ROW_SIZE; ++row)
+    {
+        for (std::uint_fast8_t col = 0; col < Sudoku::COLUMN_SIZE; ++col)
+        {
+            EXPECT_FALSE(data.is_determined(row, col));
+        }
+    }
+}
+
+TEST(SudokuDataTest, is_determined_after_set_data) {
+    SudokuData data;
+    const std::uint_fast8_t row = 3;
+    const std::uint_fast8_t col = 7;
+    const std::uint_fast8_t value = 7;
+    data.set_value(row, col, value);
+    EXPECT_EQ(data.is_determined(row, col), col < Sudoku::COLUMN_SIZE - 1);
+}
+
 // Test Method: is_possible_value
 TEST(SudokuDataTest, all_values_possible_on_empty_data) {
     SudokuData data;
