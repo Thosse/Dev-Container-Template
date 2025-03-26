@@ -200,6 +200,27 @@ TEST(SudokuDataTest, set_value_out_of_column_range) {
         data.set_value(row, col, value), 
         std::out_of_range);
 }
+TEST(SudokuDataTest, set_value_does_not_affect_other_values) {
+    SudokuData data;
+    const std::uint_fast8_t row = 3;
+    const std::uint_fast8_t col = 7;
+    const std::uint_fast8_t value = 5;
+    data.set_value(row, col, value);
+    for (std::uint_fast8_t r = 0; r < Sudoku::ROW_SIZE; ++r)
+    {
+        for (std::uint_fast8_t c = 0; c < Sudoku::COLUMN_SIZE; ++c)
+        {
+            if (r != row || c != col)
+            {
+                EXPECT_EQ( data.value(r, c), Sudoku::VALUE_UNDETERMINED);
+            }
+            else
+            {
+                EXPECT_EQ( data.value(r, c), value);
+            }
+        }
+    }
+}
 
 // Test Method: remove_possible_value
 TEST(SudokuDataTest, remove_possible_value) {
