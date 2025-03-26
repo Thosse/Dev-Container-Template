@@ -179,3 +179,90 @@ TEST(SudokuDataTest, set_value_out_of_column_range) {
         data.set_value(row, col, value), 
         std::out_of_range);
 }
+
+// Test Method: remove_possible_value
+TEST(SudokuDataTest, remove_possible_value) {
+    SudokuData data;
+    const std::uint_fast8_t row = 3;
+    const std::uint_fast8_t col = 7;
+    const std::uint_fast8_t value = 5;
+    data.remove_possible_value(row, col, value);
+    EXPECT_FALSE(data.is_possible_value(row, col, value));
+}
+
+TEST(SudokuDataTest, remove_too_high_possible_value) {
+    SudokuData data;
+    const std::uint_fast8_t row = 3;
+    const std::uint_fast8_t col = 7;
+    const std::uint_fast8_t value = Sudoku::MAX_VALUE + 1;
+    EXPECT_THROW(
+        data.remove_possible_value(row, col, value), 
+        std::out_of_range);
+}
+
+TEST(SudokuDataTest, remove_too_low_possible_value) {
+    SudokuData data;
+    const std::uint_fast8_t row = 3;
+    const std::uint_fast8_t col = 7;
+    const std::uint_fast8_t value = Sudoku::MIN_VALUE - 1;
+    EXPECT_THROW(
+        data.remove_possible_value(row, col, value), 
+        std::out_of_range);
+}
+
+TEST(SudokuDataTest, remove_possible_value_out_of_row_range) {
+    SudokuData data;
+    const std::uint_fast8_t row = Sudoku::ROW_SIZE;
+    const std::uint_fast8_t col = 7;
+    const std::uint_fast8_t value = 5;
+    EXPECT_THROW(
+        data.remove_possible_value(row, col, value), 
+        std::out_of_range);
+}
+
+TEST(SudokuDataTest, remove_possible_value_out_of_column_range) {
+    SudokuData data;
+    const std::uint_fast8_t row = 3;
+    const std::uint_fast8_t col = Sudoku::COLUMN_SIZE;
+    const std::uint_fast8_t value = 5;
+    EXPECT_THROW(
+        data.remove_possible_value(row, col, value), 
+        std::out_of_range);
+}
+
+TEST(SudokuDataTest, remove_value_does_not_affect_other_values )
+{
+    SudokuData data;
+    const std::uint_fast8_t row = 3;
+    const std::uint_fast8_t col = 7;
+    const std::uint_fast8_t value = 5;
+    data.remove_possible_value(row, col, value);
+    for (std::uint_fast8_t possible = Sudoku::MIN_VALUE; 
+        possible <= Sudoku::MAX_VALUE; 
+        ++possible)
+    {
+        if (possible != value)
+        {
+            EXPECT_TRUE(data.is_possible_value(row, col, possible));
+        }
+    }
+}
+
+TEST(SudokuDataTest, remove_value_does_not_affect_other_entries) {
+    SudokuData data;
+    const std::uint_fast8_t row = 3;
+    const std::uint_fast8_t col = 7;
+    const std::uint_fast8_t value = 5;
+    data.remove_possible_value(row, col, value);
+    for (std::uint_fast8_t r = 0; r < Sudoku::ROW_SIZE; ++r)
+    {
+        for (std::uint_fast8_t c = 0; c < Sudoku::COLUMN_SIZE; ++c)
+        {
+            if (r != row || c != col)
+            {
+                EXPECT_TRUE(data.is_possible_value(r, c, value));
+            }
+        }
+    }
+}
+

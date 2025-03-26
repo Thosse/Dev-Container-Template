@@ -30,6 +30,11 @@ class SudokuData
             std::uint_fast8_t column,
             std::uint_fast8_t value 
         );
+        void remove_possible_value (
+            std::uint_fast8_t row, 
+            std::uint_fast8_t column,
+            std::uint_fast8_t value 
+        );
 
     private:
         SudokuEntry entries[9][9] = {};

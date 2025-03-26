@@ -63,6 +63,20 @@ void SudokuData::set_value (
     return;
 }
 
+void SudokuData::remove_possible_value (
+    std::uint_fast8_t row, 
+    std::uint_fast8_t column,
+    std::uint_fast8_t value 
+)
+{
+    if ( not is_in_index_range(row, column) )
+    {
+        throw std::out_of_range("Value out of range");
+    }
+    entries[row][column].remove_possible_value(value);
+    return;
+}
+
 // //////////////// Private methods ////////////////
 bool SudokuData::is_in_index_range ( std::uint_fast8_t row, std::uint_fast8_t column ) const
 {

@@ -37,7 +37,7 @@ bool SudokuEntry::is_possible_value ( std::uint_fast8_t value ) const
 
 std::uint_fast8_t SudokuEntry::value ( void ) const
 {
-    if (is_determined())
+    if ( is_determined() )
     {
         for (std::uint_fast8_t i = Sudoku::MIN_VALUE; 
             i <= Sudoku::MAX_VALUE; 
