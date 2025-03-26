@@ -29,9 +29,17 @@ class SudokuData
             std::uint_fast8_t row, 
             std::uint_fast8_t column 
         ) const;
+        void set_value (
+            std::uint_fast8_t row, 
+            std::uint_fast8_t column,
+            std::uint_fast8_t value 
+        );
 
     private:
         SudokuEntry entries[9][9] = {};
-        // bool is_in_index_range ( std::uint_fast8_t index ) const;
+        bool is_in_index_range ( 
+            std::uint_fast8_t row, 
+            std::uint_fast8_t column 
+        ) const;
 
 };

@@ -48,7 +48,7 @@ SudokuData::ValueArray values_first_block_almost_set = {
 
 
 
-// // //////////////// Constructors ////////////////
+// Test Constructors
 TEST(SudokuDataTest, DefaultConstructor) {
     SudokuData data;
     for (std::uint_fast8_t row = 0; row < SudokuData::ROW_SIZE; ++row)
@@ -80,4 +80,55 @@ TEST(SudokuDataTest, ParameterizedConstructor_column_almost_set) {
             data.value(row, col), 
             values_first_column_almost_set[SudokuData::ROW_SIZE * row]);
     }
+}
+
+
+// Test Method: set_value
+TEST(SudokuDataTest, set_value) {
+    SudokuData data;
+    std::uint_fast8_t row = 3;
+    std::uint_fast8_t col = 7;
+    std::uint_fast8_t value = 5;
+    data.set_value(row, col, value);
+    EXPECT_EQ(data.value(row, col), value);
+}
+
+TEST(SudokuDataTest, set_too_high_value) {
+    SudokuData data;
+    std::uint_fast8_t row = 3;
+    std::uint_fast8_t col = 7;
+    std::uint_fast8_t value = SudokuEntry::MAX_VALUE + 1;
+    EXPECT_THROW(
+        data.set_value(row, col, value), 
+        std::out_of_range);
+}
+
+TEST(SudokuDataTest, set_too_low_value) {
+    SudokuData data;
+    std::uint_fast8_t row = 3;
+    std::uint_fast8_t col = 7;
+    std::uint_fast8_t value = SudokuEntry::MIN_VALUE - 1;
+    EXPECT_THROW(
+        data.set_value(row, col, value), 
+        std::out_of_range);
+}
+
+TEST(SudokuDataTest, set_value_out_of_row_range) {
+    SudokuData data;
+    std::uint_fast8_t row = SudokuData::ROW_SIZE;
+    std::uint_fast8_t col = 7;
+    std::uint_fast8_t value = 5;
+    EXPECT_THROW(
+        data.set_value(row, col, value), 
+        std::out_of_range);
+}
+
+TEST(SudokuDataTest, set_value_out_of_column_range) {
+    SudokuData data;
+    std::uint_fast8_t row = 3;
+    std::uint_fast8_t col = SudokuData::COLUMN_SIZE;
+    std::uint_fast8_t value = 5;
+    EXPECT_THROW(
+        data.set_value(row, col, value), 
+        std::out_of_range);
 }

@@ -20,7 +20,7 @@ SudokuData::SudokuData ( const ValueArray& values )
             std::uint_fast8_t value = values[row * 9 + col];
             if (value != SudokuEntry::VALUE_UNDETERMINED)
             {
-                entries[row][col].set_value(values[row * 9 + col]);
+                set_value(row, col, value);
             }
         }
     }
@@ -34,4 +34,24 @@ std::uint_fast8_t SudokuData::value (
 ) const
 {
     return entries[row][column].value();
+}
+
+void SudokuData::set_value (
+    std::uint_fast8_t row, 
+    std::uint_fast8_t column,
+    std::uint_fast8_t value 
+)
+{   
+    if ( not is_in_index_range(row, column) )
+    {
+        throw std::out_of_range("Value out of range");
+    }
+    entries[row][column].set_value(value);
+    return;
+}
+
+// //////////////// Private methods ////////////////
+bool SudokuData::is_in_index_range ( std::uint_fast8_t row, std::uint_fast8_t column ) const
+{
+    return row >= 0 && row < ROW_SIZE && column >= 0 && column < COLUMN_SIZE;
 }
