@@ -29,6 +29,11 @@ class SudokuData
             std::uint_fast8_t row, 
             std::uint_fast8_t column 
         ) const;
+        bool is_possible_value ( 
+            std::uint_fast8_t row, 
+            std::uint_fast8_t column,
+            std::uint_fast8_t value 
+        ) const;
         void set_value (
             std::uint_fast8_t row, 
             std::uint_fast8_t column,
