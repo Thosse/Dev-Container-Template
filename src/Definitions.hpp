@@ -2,7 +2,6 @@
 
 #include <cstdint>
 #include <array>
-#include <list>
 
 namespace Sudoku
 {   
@@ -27,10 +26,5 @@ namespace Sudoku
     static constexpr std::uint_fast8_t MAX_ROW = ROW_SIZE - 1;
     static constexpr std::uint_fast8_t MIN_COLUMN = 0;
     static constexpr std::uint_fast8_t MAX_COLUMN = COLUMN_SIZE - 1;
-    typedef struct 
-    {
-        std::uint_fast8_t row;
-        std::uint_fast8_t column;
-    } Index;
-    typedef std::list<Index> IndexList;
+
 }

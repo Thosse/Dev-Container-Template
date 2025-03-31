@@ -2,8 +2,10 @@
 
 #include "SudokuEntry.hpp"
 #include "Definitions.hpp"
+#include "SudokuIndex.hpp"
 #include <cstdint>
 #include <stdexcept>
+#include <list>
 
 
 /**

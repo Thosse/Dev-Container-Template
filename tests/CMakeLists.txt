@@ -16,3 +16,5 @@ target_link_libraries(
     PRIVATE GTest::GTest
     PRIVATE pthread
 )
+
+gtest_discover_tests(sudoku_tests)

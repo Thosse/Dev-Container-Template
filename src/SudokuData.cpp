@@ -4,6 +4,7 @@
 #include <cstdint>
 #include <stdexcept>
 #include <array>
+#include <list>
 
 // //////////////// Constructors ////////////////
 SudokuData::SudokuData ( void )
@@ -34,6 +35,29 @@ std::uint_fast8_t SudokuData::value (
 ) const
 {
     return entries[row][column].value();
+}
+
+std::list<std::uint_fast8_t> SudokuData::possible_values ( 
+    std::uint_fast8_t row, 
+    std::uint_fast8_t column 
+) const
+{
+
+    if ( not is_in_index_range(row, column) )
+    {
+        throw std::out_of_range("Value out of range");
+    }
+    std::list<std::uint_fast8_t> possibilities;
+    for ( std::uint_fast8_t value = Sudoku::MIN_VALUE; 
+        value <= Sudoku::MAX_VALUE; 
+        ++value )
+    {
+        if ( entries[row][column].is_possible_value(value) )
+        {
+            possibilities.push_back(value);
+        }
+    }
+    return possibilities;
 }
 
 bool SudokuData::is_determined ( 
