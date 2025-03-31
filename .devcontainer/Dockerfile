@@ -7,6 +7,9 @@ ARG MAKE_VERSION="4.3-4.1"
 
 # Install development tools
 RUN apt-get update && apt-get install -y \
+    gcc \
+    g++ \
+    gdb \
     clang=${CLANG_VERSION} \
     clang-tools=${CLANG_VERSION} \
     clang-format=${CLANG_VERSION} \
@@ -28,10 +31,8 @@ RUN apt-get install -y \
     python3 \
     python3-pip \
     inkscape \
-    graphviz \
-    && apt-get clean \
-    && rm -rf /var/lib/apt/lists/*
+    graphviz
 
 # Set clang as the default compiler
-ENV CC=/usr/bin/clang
-ENV CXX=/usr/bin/clang++
+ENV CC=/usr/bin/gcc
+ENV CXX=/usr/bin/g++
