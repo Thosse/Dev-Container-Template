@@ -30,6 +30,7 @@ namespace Sudoku
         {
             return (row == other.row && column == other.column);
         }
+        
     };
 
     typedef std::list<Index> IndexList;

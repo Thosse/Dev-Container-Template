@@ -8,15 +8,17 @@
 #include <list>
 
 
-/**
- * @brief A class representing all entries of a Sudoku puzzle.
- */
-class SudokuData
+namespace Sudoku
 {
+
+    /**
+     * @brief A class representing all entries of a Sudoku puzzle.
+     */
+    class Data
+    {
     public:
-        SudokuData ( void );
-        SudokuData ( 
-            const Sudoku::ValueArray& values 
+        Data ( void );
+        Data ( const ValueArray& values 
         );
         std::uint_fast8_t value ( 
             std::uint_fast8_t row, 
@@ -48,5 +50,5 @@ class SudokuData
             std::uint_fast8_t row, 
             std::uint_fast8_t column 
         ) const;
-
-};
+    };  
+}; // namespace Sudoku
