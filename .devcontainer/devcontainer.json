@@ -38,10 +38,11 @@
                 "C_Cpp.default.cppStandard": "c++17",
                 "C_Cpp.default.cStandard": "c11",
                 "C_Cpp.debugger.migrateWorkspace": true,
+                "cmake.ctest.enabled": true,
                 "cmake.configureOnOpen": true,
                 "cmake.buildDirectory": "${workspaceFolder}/build",
                 "cmake.generator": "Unix Makefiles",
-                "cmake.sourceDirectory": "/workspaces/Work/C++/Sudoku/src"
+                "cmake.sourceDirectory": "/workspaces/Work/C++/Sudoku"
             }
         }
     },
