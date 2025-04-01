@@ -3,8 +3,8 @@
 # Get absolute path of the project directory
 SCRIPT_DIR="$(dirname $(realpath $0) )"
 PROJECT_DIR="$SCRIPT_DIR/.."
-SOURCE_DIR="$PROJECT_DIR/tests"
-BUILD_DIR="$PROJECT_DIR/build/test"
+SOURCE_DIR="$PROJECT_DIR"
+BUILD_DIR="$PROJECT_DIR/build"
 
 GENERATOR="Unix Makefiles"
 
@@ -32,6 +32,6 @@ cmake --build "$BUILD_DIR"
 echo "========="
 echo "Run Tests"
 echo "========="
-if [ -f "$BUILD_DIR/run_unittests" ]; then
-    "$BUILD_DIR/run_unittests"
+if [ -f "$BUILD_DIR/tests/sudoku_tests" ]; then
+    "$BUILD_DIR/tests/sudoku_tests"
 fi
