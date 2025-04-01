@@ -2,6 +2,7 @@
 
 #include <cstdint>
 #include <array>
+#include <list>
 
 namespace Sudoku
 {   
@@ -12,8 +13,8 @@ namespace Sudoku
     
     static constexpr std::uint_fast8_t NUMBER_OF_ELEMENTS 
         = ROW_SIZE * COLUMN_SIZE;
-    typedef std::array<std::uint_fast8_t, NUMBER_OF_ELEMENTS> 
-        ValueArray;
+    typedef std::array<std::uint_fast8_t, NUMBER_OF_ELEMENTS>   ValueArray;
+    typedef std::list<std::uint_fast8_t>    PossibleValuesList;
     
     // Values
     static constexpr std::uint_fast8_t MIN_VALUE = 1;

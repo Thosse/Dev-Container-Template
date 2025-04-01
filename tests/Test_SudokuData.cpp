@@ -223,6 +223,52 @@ TEST(SudokuDataTest, set_value_does_not_affect_other_values) {
     }
 }
 
+// Test Method: possible_values
+TEST(SudokuDataTest, possible_values_are_single_entry_after_set_value) {
+    Sudoku::Data data;
+    const std::uint_fast8_t row = 3;
+    const std::uint_fast8_t col = 7;
+    const std::uint_fast8_t value = 5;
+    data.set_value(row, col, value);
+    auto possible_values = data.possible_values(row, col);
+    EXPECT_EQ(possible_values.size(), 1);
+    for (const auto& possible : possible_values)
+    {
+        EXPECT_EQ(possible, value);
+    }
+}
+
+TEST(SudokuDataTest, possible_values_on_empty_data) {
+    Sudoku::Data data;
+    const std::uint_fast8_t row = 3;
+    const std::uint_fast8_t col = 7;
+    auto possible_values = data.possible_values(row, col);
+    EXPECT_EQ(possible_values.size(), Sudoku::MAX_VALUE - Sudoku::MIN_VALUE + 1);
+    for (const auto& possible : possible_values)
+    {
+        EXPECT_TRUE(data.is_possible_value(row, col, possible));
+    }
+}
+
+TEST(SudokuDataTest, values_is_not_possible_after_removal)
+{
+    Sudoku::Data data;
+    const std::uint_fast8_t row = 3;
+    const std::uint_fast8_t col = 7;
+    const std::uint_fast8_t value = 5;
+    data.remove_possible_value(row, col, value);
+    auto possibilities = data.possible_values(row, col);
+    for (const auto& possible : possibilities)
+    {
+        {
+            EXPECT_NE(possible, value);
+        }
+    }
+    EXPECT_EQ(possibilities.size(), Sudoku::MAX_VALUE - Sudoku::MIN_VALUE);
+}
+
+
+
 // Test Method: remove_possible_value
 TEST(SudokuDataTest, remove_possible_value) {
     Sudoku::Data data;

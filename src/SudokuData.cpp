@@ -33,23 +33,21 @@ namespace Sudoku
     // //////////////// Public methods ////////////////
     std::uint_fast8_t Data::value ( 
         std::uint_fast8_t row, 
-        std::uint_fast8_t column 
-    ) const
+        std::uint_fast8_t column  ) const
     {
         return entries[row][column].value();
     }
 
-    std::list<std::uint_fast8_t> Data::possible_values ( 
+    PossibleValuesList Data::possible_values ( 
         std::uint_fast8_t row, 
-        std::uint_fast8_t column 
-    ) const
+        std::uint_fast8_t column ) const
     {
 
         if ( not is_in_index_range(row, column) )
         {
             throw std::out_of_range("Value out of range");
         }
-        std::list<std::uint_fast8_t> possibilities;
+        PossibleValuesList possibilities;
         for ( std::uint_fast8_t value = Sudoku::MIN_VALUE; 
             value <= Sudoku::MAX_VALUE; 
             ++value )
@@ -64,8 +62,7 @@ namespace Sudoku
 
     bool Data::is_determined ( 
         std::uint_fast8_t row, 
-        std::uint_fast8_t column 
-    ) const
+        std::uint_fast8_t column ) const
     {   
         if ( not is_in_index_range(row, column) )
         {
@@ -77,8 +74,7 @@ namespace Sudoku
     bool Data::is_possible_value ( 
         std::uint_fast8_t row, 
         std::uint_fast8_t column,
-        std::uint_fast8_t value 
-    ) const
+        std::uint_fast8_t value ) const
     {
         if ( not is_in_index_range(row, column) )
         {
@@ -90,8 +86,7 @@ namespace Sudoku
     void Data::set_value (
         std::uint_fast8_t row, 
         std::uint_fast8_t column,
-        std::uint_fast8_t value 
-    )
+        std::uint_fast8_t value )
     {   
         if ( not is_in_index_range(row, column) )
         {
@@ -104,8 +99,7 @@ namespace Sudoku
     void Data::remove_possible_value (
         std::uint_fast8_t row, 
         std::uint_fast8_t column,
-        std::uint_fast8_t value 
-    )
+        std::uint_fast8_t value )
     {
         if ( not is_in_index_range(row, column) )
         {

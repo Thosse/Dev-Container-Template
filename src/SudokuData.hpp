@@ -24,6 +24,10 @@ namespace Sudoku
             std::uint_fast8_t row, 
             std::uint_fast8_t column 
         ) const;
+        PossibleValuesList possible_values ( 
+            std::uint_fast8_t row, 
+            std::uint_fast8_t column 
+        ) const;
         bool is_determined ( 
             std::uint_fast8_t row, 
             std::uint_fast8_t column 
