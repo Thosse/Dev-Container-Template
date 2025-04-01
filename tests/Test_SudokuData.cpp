@@ -1,5 +1,6 @@
 #include "SudokuEntry.hpp"
 #include "SudokuData.hpp"
+#include "Definitions.hpp"
 
 #include "gtest/gtest.h"
 #include <cstdint>

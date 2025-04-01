@@ -1,5 +1,6 @@
 #include "SudokuEntry.hpp"
 #include "Definitions.hpp"
+#include "SudokuIndex.hpp"
 #include <iostream>
 
 int main()
