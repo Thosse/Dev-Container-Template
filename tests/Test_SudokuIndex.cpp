@@ -46,3 +46,13 @@ TEST(SudokuIndexTest, constructor_invalid_on_too_low_column)
         Sudoku::Index index(Sudoku::MIN_ROW, Sudoku::MIN_COLUMN - 1),
         std::out_of_range);
 }
+
+// Test Method: get_block_indices
+TEST(SudokuIndexTest, get_indices_of_block_has_correct_number_of_elements)
+{
+    Sudoku::Index index(1, 2);
+    Sudoku::IndexList indices_without_self = index.get_block_indices();
+    EXPECT_EQ(indices_without_self.size(), 8);
+    Sudoku::IndexList indices_with_self = index.get_block_indices(true);
+    EXPECT_EQ(indices_with_self.size(), 9);
+}
