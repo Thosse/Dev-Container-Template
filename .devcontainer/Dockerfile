@@ -26,12 +26,17 @@ RUN apt-get install -y libgtest-dev \
     && make \
     && cp lib/libgtest*.a /usr/lib/
 
+# Install documentation tools
+RUN  apt-get install -y \
+    doxygen \
+    graphviz \
+    plantuml \
+    inkscape
+
 # Install additional tools
 RUN apt-get install -y \
     python3 \
-    python3-pip \
-    inkscape \
-    graphviz
+    python3-pip
 
 # Set clang as the default compiler
 ENV CC=/usr/bin/gcc
