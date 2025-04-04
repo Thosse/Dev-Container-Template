@@ -56,3 +56,15 @@ TEST(SudokuIndexTest, get_indices_of_block_has_correct_number_of_elements)
     Sudoku::IndexList indices_with_self = index.get_block_indices(true);
     EXPECT_EQ(indices_with_self.size(), 9);
 }
+
+TEST(SudokuIndexTest, get_indices_of_block_matches_ordered_expectation)
+{
+    Sudoku::Index index(1, 2);
+    Sudoku::IndexList indices_without_self = index.get_block_indices();
+    Sudoku::IndexList expected_indices_without_self = {
+        Sudoku::Index(0, 0), Sudoku::Index(0, 1), Sudoku::Index(0,2),
+        Sudoku::Index(1, 0), Sudoku::Index(1, 1),
+        Sudoku::Index(2, 0), Sudoku::Index(2, 1), Sudoku::Index(2, 2)
+    };
+    EXPECT_EQ(indices_without_self, expected_indices_without_self);
+}
