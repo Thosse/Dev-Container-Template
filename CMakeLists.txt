@@ -20,3 +20,7 @@ add_dependencies(sudoku_app sudoku_solver)
 include(CTest)
 # Add the tests to the build project
 add_subdirectory(tests)
+
+
+# Doxygen Documentation
+add_subdirectory(doc)
