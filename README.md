@@ -8,7 +8,7 @@ This repository is my attempot to set up Development Containers for C++ projects
 This only serves as an example, to test and show the capabilities of the Dev-Containers.
 
 ## Googletest Support
-Google 
+Googletest is supported and integrates well into CMake and CTest.
 
 ## Git
 The repository is versioned with git.
@@ -21,3 +21,7 @@ However, tere are some issues with certificates, that are only available in the 
 Currently we support
 - GCC/G++ (default)
 - Clang/LLVM
+
+## Theme
+This Repository uses the 
+[Doxygen-Awesome theme](https://jothepro.github.io/doxygen-awesome-css/).
