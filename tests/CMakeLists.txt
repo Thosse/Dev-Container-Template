@@ -15,4 +15,7 @@ target_link_libraries(
     PRIVATE GTest::gtest_main
 )
 
+# Add explicit dependency
+add_dependencies(sudoku_tests sudoku_solver)
+
 gtest_discover_tests(sudoku_tests)
