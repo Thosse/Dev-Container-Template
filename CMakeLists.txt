@@ -17,10 +17,9 @@ target_link_libraries(sudoku_app PRIVATE sudoku_solver)
 add_dependencies(sudoku_app sudoku_solver)
 
 # Enable testing at the top level
-include(CTest)
+enable_testing()
 # Add the tests to the build project
 add_subdirectory(tests)
-
 
 # Doxygen Documentation
 add_subdirectory(doc)
