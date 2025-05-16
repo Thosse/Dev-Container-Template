@@ -6,13 +6,17 @@ set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 
-# Build the library
+# Add sudoku_solver (static library) to the build projects
 add_subdirectory(src)
+
 # Build the application
 add_executable(sudoku_app main.cpp)
 target_link_libraries(sudoku_app PRIVATE sudoku_solver)
 
+# Autobuild required libraries 
+add_dependencies(sudoku_app sudoku_solver)
+
 # Enable testing at the top level
-enable_testing()
-# Add the test directory
+include(CTest)
+# Add the tests to the build project
 add_subdirectory(tests)
